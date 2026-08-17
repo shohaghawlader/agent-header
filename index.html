@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinetic Animated Header - Image Logo</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06080d;--bg2:#0b1020;--bg3:#121a31;
+  --cyan:#59f0ff;--violet:#7d5cff;--pink:#ff4f9e;
+  --lime:#d6ff53;--white:#ffffff;
+}
+html,body{width:100%;overflow-x:hidden}
+body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f2f3f7}
+
+.site-header{
+  width:100%;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--bg) 0%,var(--bg2) 48%,var(--bg3) 100%);
+  border-bottom:1px solid rgba(255,255,255,.08)
+}
+.site-header::before{
+  content:"";position:absolute;inset:-30% -10%;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(89,240,255,.22),transparent 20%),
+    radial-gradient(circle at 80% 20%,rgba(125,92,255,.18),transparent 20%),
+    radial-gradient(circle at 50% 0%,rgba(255,79,158,.12),transparent 24%);
+  filter:blur(24px);animation:auroraShift 10s ease-in-out infinite alternate;pointer-events:none
+}
+.site-header::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:24px 24px;opacity:.45;pointer-events:none
+}
+@keyframes auroraShift{
+  0%{transform:translate3d(-2%,0,0) scale(1)}
+  50%{transform:translate3d(2%,2%,0) scale(1.03)}
+  100%{transform:translate3d(0,4%,0) scale(1.05)}
+}
+.particle{
+  position:absolute;width:6px;height:6px;border-radius:50%;
+  background:var(--cyan);opacity:.55;box-shadow:0 0 14px rgba(89,240,255,.7);
+  animation:floatParticle linear infinite
+}
+.p1{left:8%;top:18px;animation-duration:9s}
+.p2{left:28%;top:10px;width:4px;height:4px;animation-duration:12s;background:var(--pink);box-shadow:0 0 12px rgba(255,79,158,.7)}
+.p3{right:18%;top:26px;animation-duration:8.2s;background:var(--lime);box-shadow:0 0 12px rgba(214,255,83,.55)}
+.p4{right:6%;top:12px;width:4px;height:4px;animation-duration:10.5s;background:var(--cyan)}
+@keyframes floatParticle{
+  0%{transform:translateY(0) translateX(0);opacity:.15}
+  30%{opacity:.6}
+  100%{transform:translateY(100px) translateX(12px);opacity:0}
+}
+.scan{
+  position:absolute;left:-35%;top:0;width:34%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+  transform:skewX(-20deg);animation:scanMove 5.8s linear infinite;pointer-events:none
+}
+@keyframes scanMove{to{left:120%}}
+
+/* 1. IMAGE LOGO AREA */
+.brand-strip{
+  min-height:112px;position:relative;display:flex;align-items:center;justify-content:center;
+  padding:10px 58px;border-bottom:1px solid rgba(255,255,255,.09);z-index:2
+}
+.logo-shell{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:min(78vw,420px);min-height:90px
+}
+.logo-shell::before,.logo-shell::after{
+  content:"";position:absolute;height:1px;width:52px;top:50%;
+  transform:translateY(-50%);
+  background:linear-gradient(90deg,transparent,rgba(89,240,255,.9));
+  animation:pulseLine 2.4s ease-in-out infinite
+}
+.logo-shell::before{left:-58px}
+.logo-shell::after{right:-58px;transform:translateY(-50%) scaleX(-1)}
+@keyframes pulseLine{
+  0%,100%{opacity:.4;width:42px}
+  50%{opacity:1;width:52px}
+}
+
+/* ONLY CHANGE src="" IN THE HTML BELOW */
+.logo-image{
+  display:block;
+  width:auto;
+  max-width:100%;
+  height:auto;
+  max-height:102px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 14px rgba(89,240,255,.18));
+  animation:logoFloat 3.2s ease-in-out infinite
+}
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 10px rgba(89,240,255,.15))}
+  50%{transform:translateY(-2px) scale(1.015);filter:drop-shadow(0 0 20px rgba(89,240,255,.30))}
+}
+
+.search-btn{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow:hidden
+}
+.search-btn::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(89,240,255,.20),rgba(125,92,255,.18))
+}
+.search-btn::after{
+  content:"";position:absolute;inset:5px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);animation:searchPulse 2.1s ease-in-out infinite
+}
+@keyframes searchPulse{
+  0%,100%{opacity:.4;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.08)}
+}
+.search-btn svg{
+  position:relative;z-index:1;width:15px;height:15px;fill:none;stroke:currentColor;
+  stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round
+}
+
+/* 2. MENU */
+.menu-shell{position:relative;z-index:2;padding:0 5px 5px}
+.menu{width:100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+.menu-item{
+  min-width:0;height:44px;padding:4px 2px;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;text-align:center;position:relative;color:#d8e5ff;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);
+  border-radius:12px;overflow:hidden;transition:.22s ease
+}
+.menu-item::before{
+  content:"";position:absolute;inset:auto -30% 0 -30%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0
+}
+.menu-item::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 0 38%,rgba(255,255,255,.08) 45%,transparent 52%);
+  transform:translateX(-120%)
+}
+.menu-item.active::after{animation:shine 2.6s linear infinite}
+@keyframes shine{to{transform:translateX(120%)}}
+.menu-text{font-size:8.9px;line-height:1.02;font-weight:800;position:relative;z-index:1}
+.menu-item.active{
+  color:#fff;border-color:rgba(89,240,255,.26);
+  background:linear-gradient(135deg,rgba(89,240,255,.14),rgba(125,92,255,.18));
+  box-shadow:inset 0 0 0 1px rgba(89,240,255,.08),0 0 18px rgba(89,240,255,.08)
+}
+.menu-item.active::before{opacity:1;animation:underlineSweep 2.2s linear infinite}
+@keyframes underlineSweep{
+  0%{transform:translateX(-30%)}
+  100%{transform:translateX(30%)}
+}
+
+/* 3. NEWS */
+.news{
+  position:relative;z-index:2;height:34px;display:flex;align-items:stretch;overflow:hidden;
+  background:rgba(0,0,0,.18);border-top:1px solid rgba(255,255,255,.06)
+}
+.news-label{
+  position:relative;flex:0 0 74px;display:flex;align-items:center;justify-content:center;gap:6px;
+  color:#fff;font-size:8.4px;font-weight:900;letter-spacing:.9px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--pink),var(--violet))
+}
+.live-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--lime);animation:liveBeat 1.2s ease-in-out infinite
+}
+@keyframes liveBeat{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(214,255,83,.16)}
+  50%{transform:scale(1.25);box-shadow:0 0 0 6px rgba(214,255,83,0)}
+}
+.news-window{
+  flex:1;min-width:0;display:flex;align-items:center;overflow:hidden;position:relative;margin-left:12px
+}
+.news-track{display:flex;width:max-content;white-space:nowrap;animation:newsRun 20s linear infinite}
+.news-item{
+  display:flex;align-items:center;gap:8px;margin-right:26px;color:#eff5ff;font-size:8.7px;font-weight:650
+}
+.news-sep{
+  width:8px;height:8px;transform:rotate(45deg);
+  background:linear-gradient(135deg,var(--cyan),var(--lime));
+  box-shadow:0 0 10px rgba(89,240,255,.32);flex:0 0 auto
+}
+@keyframes newsRun{
+  from{transform:translateX(100vw)}
+  to{transform:translateX(-100%)}
+}
+
+@media(max-width:430px){
+  .brand-strip{min-height:104px;padding:8px 46px}
+  .logo-shell{width:min(80vw,350px);min-height:84px}
+  .logo-image{max-height:92px}
+  .logo-shell::before,.logo-shell::after{width:38px}
+  .logo-shell::before{left:-42px}
+  .logo-shell::after{right:-42px}
+  .search-btn{width:30px;height:30px;right:10px}
+  .menu-shell{padding:0 4px 4px}
+  .menu{gap:2px}
+  .menu-item{height:40px;border-radius:10px}
+  .menu-text{font-size:8px}
+  .news{height:31px}
+  .news-label{flex-basis:64px;font-size:7.6px}
+  .news-window{margin-left:10px}
+  .news-item{font-size:8px;gap:7px;margin-right:20px}
+  .news-sep{width:7px;height:7px}
+}
+
+@media(max-width:360px){
+  .brand-strip{min-height:94px;padding-left:40px;padding-right:40px}
+  .logo-shell{width:min(78vw,290px);min-height:76px}
+  .logo-image{max-height:82px}
+  .logo-shell::before,.logo-shell::after{width:28px}
+  .logo-shell::before{left:-32px}
+  .logo-shell::after{right:-32px}
+  .search-btn{width:27px;height:27px}
+  .menu-item{height:37px}
+  .menu-text{font-size:7.2px}
+  .news-label{flex-basis:58px;font-size:7px}
+  .news-item{font-size:7.5px}
+}
+</style>
+<style>/* ==========================================
+   🚀 HIDDEN ELEMENTS
+   ========================================== */
+[data-testid="accounts-profile-button"],
+[data-testid="conversation-options-button"],
+[aria-description="Share sheet"],
+#modal-account-payment,
+#modal-conversation-history-rate-limit,
+a[href="/library"],
+a[href*="/invite"],
+a[href="/apps"],
+a[href="/logout"],
+a[href="/admin"],
+a[href="/deep-research"],
+div:has(> svg.lucide-user-plus) {
+  display: none !important;
+}
+
+/* 🔥 HIDE PIN ICONS IN SIDEBAR 🔥 */
+button[aria-label="Pin chat"],
+button[aria-label="Unpin chat"],
+button[aria-label="Pin project"],
+button[aria-label="Unpin project"],
+button:has(svg.lucide-pin),
+button:has(svg.lucide-pin-off) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+#notice_share {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* Fix Send Button Arrow Rotation */
+[data-testid="send-button"] svg { 
+  transform: none !important; 
+}
+
+/* ==========================================
+   🚀 COMBINED SCROLL UNLOCK (Wheel & Touch Fix)
+   ========================================== */
+html, body, #__next, [data-scroll-locked] {
+    overflow: visible !important;
+    overflow-y: auto !important;
+    pointer-events: auto !important;
+    padding-right: 0 !important; 
+}
+
+.flex-1.overflow-hidden, 
+.react-scroll-to-bottom--css {
+    overflow-y: auto !important;
+    pointer-events: auto !important;
+}
+
+div[role="dialog"] ~ div[aria-hidden="true"][style*="position: fixed"] {
+    display: none !important;
+    pointer-events: none !important;
+}</style></head>
+
+<body>
+
+<header class="site-header">
+  <span class="particle p1"></span>
+  <span class="particle p2"></span>
+  <span class="particle p3"></span>
+  <span class="particle p4"></span>
+  <span class="scan"></span>
+
+  <!-- 1. IMAGE LOGO -->
+  <section class="brand-strip">
+    <div class="logo-shell">
+      <!-- শুধু নিচের src এর ভিতরে আপনার image URL দিন -->
+      <img
+        class="logo-image"
+        src="https://betx365win.com/wp-content/uploads/2026/03/Untitled-20.png"
+        alt="Website Logo"
+      >
+    </div>
+
+    <a href="#" class="search-btn" aria-label="Search">
+      <svg viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="M20 20L16.65 16.65"></path>
+      </svg>
+    </a>
+  </section>
+
+  <!-- 2. MENU -->
+  <div class="menu-shell">
+    <nav class="menu">
+      <a href="#" class="menu-item active"><span class="menu-text">হোম</span></a>
+      <a href="#" class="menu-item"><span class="menu-text">কাস্টমার<br>সার্ভিস</span></a>
+      <a href="#" class="menu-item"><span class="menu-text">এডমিন</span></a>
+      <a href="#" class="menu-item"><span class="menu-text">সুপার<br>এজেন্ট</span></a>
+      <a href="#" class="menu-item"><span class="menu-text">মাস্টার<br>এজেন্ট</span></a>
+    </nav>
+  </div>
+
+  <!-- 3. NEWS -->
+  <section class="news">
+    <div class="news-label">
+      <span class="live-dot"></span>
+      Live
+    </div>
+
+    <div class="news-window">
+      <div class="news-track">
+        <div class="news-item">
+          <span class="news-sep"></span>
+          অফিসিয়াল এজেন্টের সাথে লেনদেন করার আগে Agent ID ও Contact Number যাচাই করুন।
+        </div>
+
+        <div class="news-item">
+          <span class="news-sep"></span>
+          নিরাপদ লেনদেনের জন্য শুধুমাত্র তালিকাভুক্ত এজেন্টের সাথে যোগাযোগ করুন।
+        </div>
+
+        <div class="news-item">
+          <span class="news-sep"></span>
+          সন্দেহজনক তথ্য পেলে Customer Service-এর সাথে যোগাযোগ করুন।
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<script>
+const items=document.querySelectorAll(".menu-item");
+items.forEach(item=>{
+  item.addEventListener("click",function(e){
+    e.preventDefault();
+    items.forEach(x=>x.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
+</script>
+
+<script>// ==========================================
+// 🚀 1. INDEXED-DB & MEMORY NUKE
+// ==========================================
+(function() {
+    async function nukeStorage() {
+        try {
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && (key.includes('limit') || key.includes('capacity') || key.includes('message_cap') || key.includes('429') || key.includes('401'))) {
+                    localStorage.removeItem(key);
+                }
+            }
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                if (key && (key.includes('limit') || key.includes('capacity') || key.includes('message_cap') || key.includes('429') || key.includes('401'))) {
+                    sessionStorage.removeItem(key);
+                }
+            }
+        } catch (e) {}
+    }
+    nukeStorage();
+    setInterval(nukeStorage, 5000);
+})();
+
+// ==========================================
+// 🚀 2. FETCH & STREAM HIJACKER (WITH REFRESH BYPASS)
+// ==========================================
+(function() {
+    const originalFetch = window.fetch;
+    window.fetch = async function (...args) {
+        try {
+            const response = await originalFetch.apply(this, args);
+            const url = args[0] && typeof args[0] === 'string' ? args[0] : '';
+            
+            // 🚀 REFRESH BYPASS: If URL contains "refresh", let it pass normally to keep session alive.
+            if ((url.includes('/backend-api/sentinel/heartbeat') || url.includes('/ces/')) && !url.includes('refresh')) {
+                return new Response(JSON.stringify({}), { status: 200, statusText: 'OK', headers: response.headers });
+            }
+
+            if (response.status === 401 || response.status === 403) {
+                return new Promise(() => {}); 
+            }
+
+            if (response.status === 429) {
+                return response;
+            }
+
+            const contentType = response.headers.get('content-type') || '';
+            if (contentType.includes('text/event-stream') || contentType.includes('application/json')) {
+                const isStream = contentType.includes('text/event-stream');
+                
+                if (!isStream) {
+                    const clone = response.clone();
+                    const text = await clone.text();
+                    if (text.includes('message_cap') || text.includes('limit') || text.includes('429')) {
+                        let modifiedText = text.replace(/"message_cap":\s*[\d.]+/g, '"message_cap":99999');
+                        modifiedText = modifiedText.replace(/"message_cap":\s*null/g, '"message_cap":99999');
+                        modifiedText = modifiedText.replace(/"has_capacity_limit":\s*true/g, '"has_capacity_limit":false');
+                        return new Response(modifiedText, {
+                            status: response.status,
+                            statusText: response.statusText,
+                            headers: response.headers
+                        });
+                    }
+                    return response;
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                const encoder = new TextEncoder();
+                
+                const stream = new ReadableStream({
+                    async start(controller) {
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+                            
+                            let chunk = decoder.decode(value, { stream: true });
+                            if (chunk.includes('message_cap') || chunk.includes('limit') || chunk.includes('429')) {
+                                chunk = chunk.replace(/"message_cap":\s*[\d.]+/g, '"message_cap":99999');
+                                chunk = chunk.replace(/"has_capacity_limit":\s*true/g, '"has_capacity_limit":false');
+                            }
+                            controller.enqueue(encoder.encode(chunk));
+                        }
+                        controller.close();
+                        reader.releaseLock();
+                    }
+                });
+
+                return new Response(stream, {
+                    headers: response.headers,
+                    status: response.status,
+                    statusText: response.statusText
+                });
+            }
+
+            return response;
+        } catch (error) {
+            return new Response(JSON.stringify({}), { status: 200, statusText: 'OK' });
+        }
+    };
+})();
+
+// ==========================================
+// 🚀 3. WEBSOCKET SHIELD
+// ==========================================
+(function() {
+    const OrigWebSocket = window.WebSocket;
+    window.WebSocket = function(url, protocols) {
+        const ws = new OrigWebSocket(url, protocols);
+        const origAddEventListener = ws.addEventListener.bind(ws);
+        ws.addEventListener = function(type, listener, options) {
+            if (type === 'message') {
+                const wrappedListener = function(event) {
+                    if (typeof event.data === 'string') {
+                        if (event.data.includes('message_cap') || event.data.includes('limit') || event.data.includes('429') || event.data.includes('401')) return;
+                    }
+                    listener.call(this, event);
+                };
+                return origAddEventListener(type, wrappedListener, options);
+            }
+            return origAddEventListener(type, listener, options);
+        };
+        return ws;
+    };
+})();
+
+// ==========================================
+// 🚀 4. TITANIUM UNFREEZER & SETTINGS BLOCKER
+// ==========================================
+(function() {
+    setInterval(() => {
+        if (window.location.hash.includes('#settings')) {
+            const blockedHash = window.location.hash;
+            window.location.hash = ''; 
+            history.replaceState(null, null, " ");
+            
+            fetch('/api/report-violation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: 'Frontend Locked Hash: ' + blockedHash })
+            }).catch(() => {});
+            
+            const closeBtns = document.querySelectorAll('button[aria-label="Close"], button[aria-label="Close dialog"]');
+            closeBtns.forEach(btn => btn.click());
+            document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, bubbles: true }));
+            
+            const dialogs = document.querySelectorAll('div[role="dialog"]');
+            dialogs.forEach(dialog => {
+                if (dialog.innerText.includes("Settings") || dialog.innerText.includes("Security") || dialog.innerText.includes("Data controls")) {
+                    dialog.style.display = "none";
+                }
+            });
+        }
+
+        const textarea = document.querySelector('#prompt-textarea');
+        const sendBtn = document.querySelector('[data-testid="send-button"]');
+        const tooltips = document.querySelectorAll('div[role="tooltip"]');
+        
+        tooltips.forEach(t => {
+            if(t.innerText && (t.innerText.toLowerCase().includes('limit') || t.innerText.toLowerCase().includes('unauthorized'))) {
+                t.style.display = 'none';
+            }
+        });
+
+        const dialogs = document.querySelectorAll('div[role="dialog"]');
+        dialogs.forEach(dialog => {
+            const text = dialog.innerText || dialog.textContent || "";
+            if (text.includes("Too many requests") || text.includes("limit") || text.includes("session expired") || dialog.id.includes("rate-limit")) {
+                const buttons = dialog.querySelectorAll('button');
+                buttons.forEach(btn => { try { btn.click(); } catch(e) {} });
+                document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, bubbles: true }));
+            }
+        });
+
+        if (textarea) {
+            textarea.disabled = false;
+            textarea.removeAttribute('disabled');
+            textarea.style.pointerEvents = 'auto';
+            if(textarea.placeholder.includes("limit") || textarea.placeholder.includes("Too many")) {
+                textarea.placeholder = "Message ChatGPT...";
+            }
+        }
+        
+        if (sendBtn) {
+            sendBtn.disabled = false;
+            sendBtn.removeAttribute('disabled');
+            sendBtn.style.pointerEvents = 'auto';
+            sendBtn.classList.remove('cursor-not-allowed', 'opacity-50');
+        }
+    }, 50); 
+})();
+
+// ==========================================
+// 🚀 5. COOKIE KILLER & DOM CLEANER
+// ==========================================
+(function () {
+  function killMonsterCookies() {
+    const domain = location.hostname;
+    const rootDomain = "." + domain.split('.').slice(-2).join('.'); 
+    document.cookie.split(";").forEach(c => {
+      let cookieName = c.trim().split("=")[0];
+      if (cookieName.startsWith("ajs_") || cookieName.startsWith("_dd_s") || cookieName.startsWith("intercom")) {
+        document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + domain + ";";
+        document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + rootDomain + ";";
+      }
+    });
+  }
+  killMonsterCookies();
+  setInterval(killMonsterCookies, 2000);
+})();
+
+document.body.addEventListener("click", function (event) {
+  const link = event.target.closest("a");
+  if (!link) return;
+  const href = link.getAttribute("href");
+  if (!href) return;
+  const match = href.match(/^\/c\/([^\/]+)\/share\/([^\/]+)$/);
+  if (match) {
+    if (event.target.closest("button")) return;
+    event.preventDefault();
+    window.location.href = `/share/${match[2]}?c=${match[1]}`;
+  }
+});
+
+(function () {
+  "use strict";
+  function preventScrollLock(target) {
+      const originalAddEventListener = target.addEventListener;
+      target.addEventListener = function(type, listener, options) {
+          if (type === 'wheel' || type === 'touchmove') return; 
+          return originalAddEventListener.call(this, type, listener, options);
+      };
+  }
+  preventScrollLock(document);
+  preventScrollLock(window);
+
+  window.addEventListener("hashchange", function (event) {
+      if (window.location.hash === "#settings" || window.location.hash === "#pricing") {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        history.replaceState(null, null, " ");
+      }
+    }, true
+  );
+
+  const filterRules = [
+    { type: "selectorOnly", selector: '[data-testid="accounts-profile-button"]' },
+    { type: "selectorOnly", selector: '[data-testid="conversation-options-button"]' },
+    { type: "selectorOnly", selector: "#modal-account-payment" },
+    { type: "selectorOnly", selector: ".data-prompt-textarea-header aside" },
+    { type: "selectorOnly", selector: 'a[href="/library"]' },
+    { type: "selectorOnly", selector: 'a[href="/admin"]' },
+    { type: "selectorOnly", selector: 'a[href="/apps"]' },
+    { type: "selectorOnly", selector: 'a[href="/c/mustbe_hidden_pin"]' },
+    { type: "selectorOnly", selector: 'a[href="/deep-research"]' },
+    { type: "textOnly", text: "Report conversation" },
+    { type: "textOnly", text: "This is a copy of a shared ChatGPT conversation" },
+    { type: "textOnly", text: "Messages beyond this point are only visible to you" },
+    { type: "textOnly", text: "Archive" },
+    { type: "textOnly", text: "Start a group chat" },
+    { type: "xpath", query: "//button[contains(., 'Invite team members')]" }
+  ];
+
+  function cleanDOM() {
+    document.body.removeAttribute('data-scroll-locked');
+    document.documentElement.removeAttribute('data-scroll-locked');
+    
+    const nextRoot = document.getElementById('__next');
+    if (nextRoot) {
+        nextRoot.removeAttribute('aria-hidden');
+    }
+
+    document.head.querySelectorAll('style[data-radix-scroll-prevent-default]').forEach(el => {
+        el.remove();
+    });
+
+    document.querySelectorAll('div[aria-hidden="true"][style*="position: fixed"]').forEach(el => {
+        if (el.style.backgroundColor || el.style.backdropFilter || el.style.opacity) {
+            el.remove();
+        }
+    });
+
+    document.querySelectorAll('[aria-description="Share sheet"]').forEach((el) => {
+        if (el.parentElement) {
+          el.parentElement.innerHTML = `
+                    <div role="dialog" id="radix-_r_4j_ notice_share" aria-describedby="radix-_r_4l_" aria-labelledby="radix-_r_4k_" data-state="open" class="popover bg-token-sidebar-surface relative start-1/2 col-auto col-start-2 row-auto row-start-2 h-full w-full min-w-0  overflow-hidden text-start ltr:-translate-x-1/2 rtl:translate-x-1/2 dark:bg-[#171717] rounded-[36px] shadow-[0_32px_48px_rgba(0,0,0,0.175),_0_0_1px_rgba(0,0,0,0.2)] dark:shadow-[0_32px_48px_rgba(0,0,0,0.175),_0_0_1px_rgba(255,255,255,0.4)] flex flex-col focus:outline-hidden max-w-[640px]" tabindex="-1" style="pointer-events: auto;"><img src="https://placehold.co/600x400" alt="Notice"></div>
+                `;
+        }
+    });
+
+    document.querySelectorAll('[href="/cdn/assets/sprites-core-9c5054d5.svg#f7f872"]').forEach((el) => {
+        if (el.parentElement) el.parentElement.parentElement.parentElement.remove();
+    });
+
+    document.querySelectorAll('[href="/cdn/assets/sprites-core-9c5054d5.svg#61ee0c"]').forEach((el) => {
+        if (el.parentElement) el.parentElement.parentElement.parentElement.parentElement.remove();
+    });
+      
+    document.querySelectorAll('[href="/cdn/assets/sprites-core-9c5054d5.svg#427dd9"]').forEach((el) => {
+        if (el.parentElement) el.parentElement.parentElement.remove();
+    });
+
+    const dynamicModal = document.querySelector('#settings, #pricing, [id*="pricing"], [class*="modal-pricing"], [id*="settings"], [class*="modal-settings"]');
+    if (dynamicModal) {
+      dynamicModal.remove();
+    }
+
+    filterRules.forEach((rule) => {
+      if (rule.type === "selectorOnly") {
+        const elements = document.querySelectorAll(rule.selector);
+        elements.forEach((element) => { if(element) element.style.setProperty('display', 'none', 'important'); });
+      } else if (rule.type === "textOnly") {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        let textNode;
+        const nodesToHide = [];
+        while ((textNode = walker.nextNode())) {
+          if (textNode.nodeValue.trim() === rule.text) {
+            const parent = textNode.parentElement;
+            if (parent && parent.children.length === 0) nodesToHide.push(parent);
+          }
+        }
+        nodesToHide.forEach((node) => { if(node) node.style.setProperty('display', 'none', 'important'); });
+      } else if (rule.type === "xpath") {
+        const snapshot = document.evaluate(rule.query, document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+        for (let i = 0; i < snapshot.snapshotLength; i++) {
+          const node = snapshot.snapshotItem(i);
+          if (node) node.style.setProperty('display', 'none', 'important');
+        }
+      }
+    });
+  }
+
+  let isCleaning = false;
+  const observer = new MutationObserver((mutationsList) => {
+    if (isCleaning) return;
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'attributes') {
+          if (mutation.attributeName === 'data-scroll-locked' && mutation.target === document.body) document.body.removeAttribute('data-scroll-locked');
+          if (mutation.attributeName === 'aria-hidden' && mutation.target.id === '__next') mutation.target.removeAttribute('aria-hidden');
+      }
+      if (mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach(node => {
+            if (node.tagName === 'STYLE' && node.hasAttribute('data-radix-scroll-prevent-default')) {
+                node.remove();
+            }
+        });
+
+        isCleaning = true;
+        cleanDOM();
+        isCleaning = false;
+        break;
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class', 'data-scroll-locked', 'aria-hidden'] });
+  cleanDOM();
+})();</script></body>
+</html>
