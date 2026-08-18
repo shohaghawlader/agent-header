@@ -100,11 +100,10 @@ body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f2f3f7}
 }
 
 .search-btn{
-  position:absolute;right:14px;top:50%;transform:translateY(-50%);
-  width:34px;height:34px;border-radius:50%;
-  border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:32px;height:32px;
   display:flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow:hidden
+  background:transparent;border:none;border-radius:0;overflow:visible
 }
 .search-btn::before{
   content:"";position:absolute;inset:0;
@@ -119,8 +118,8 @@ body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f2f3f7}
   50%{opacity:1;transform:scale(1.08)}
 }
 .search-btn svg{
-  position:relative;z-index:1;width:15px;height:15px;fill:none;stroke:currentColor;
-  stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round
+  position:relative;z-index:1;width:22px;height:22px;fill:none;stroke:currentColor;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round
 }
 
 /* 2. MENU */
@@ -196,7 +195,7 @@ body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f2f3f7}
   .logo-shell::before,.logo-shell::after{width:38px}
   .logo-shell::before{left:-42px}
   .logo-shell::after{right:-42px}
-  .search-btn{width:30px;height:30px;right:10px}
+  .search-btn{width:32px;height:32px;left:10px}
   .menu-shell{padding:0 4px 4px}
   .menu{gap:2px}
   .menu-item{height:40px;border-radius:10px}
@@ -215,13 +214,327 @@ body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f2f3f7}
   .logo-shell::before,.logo-shell::after{width:28px}
   .logo-shell::before{left:-32px}
   .logo-shell::after{right:-32px}
-  .search-btn{width:27px;height:27px}
+  .search-btn{width:30px;height:30px;left:8px}
   .menu-item{height:37px}
   .menu-text{font-size:7.2px}
   .news-label{flex-basis:58px;font-size:7px}
   .news-item{font-size:7.5px}
 }
 </style>
+<style id="reference-menu-match">
+/* ==========================================
+   MENU ONLY — matched to the supplied reference
+   Everything outside the menu remains unchanged.
+   ========================================== */
+.menu-shell{
+  position:relative;
+  z-index:2;
+  padding:10px 12px 12px !important;
+  background:linear-gradient(180deg,rgba(7,23,36,.15),rgba(5,16,28,.42));
+}
+
+.menu{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:10px !important;
+}
+
+/* Keep all five original menu items visible in one row. */
+
+.menu-item{
+  min-width:0;
+  height:70px !important;
+  padding:5px 7px !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;
+  text-align:center;
+  color:#cdd7de !important;
+  border-radius:18px !important;
+  border:2px solid rgba(108,208,224,.54) !important;
+  background:
+    linear-gradient(180deg,rgba(53,82,96,.76) 0%,rgba(28,53,68,.82) 48%,rgba(17,35,48,.95) 100%) !important;
+  box-shadow:
+    0 0 0 2px rgba(177,208,216,.27),
+    0 0 12px rgba(71,220,239,.34),
+    inset 0 2px 3px rgba(255,255,255,.28),
+    inset 0 -4px 8px rgba(0,0,0,.56),
+    inset 0 0 0 3px rgba(8,25,36,.52) !important;
+  transition:filter .18s ease,transform .18s ease !important;
+}
+
+/* inner bevel/frame */
+.menu-item::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:5px !important;
+  height:auto !important;
+  border-radius:13px !important;
+  border:1px solid rgba(150,231,240,.30) !important;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(0,0,0,.08)) !important;
+  opacity:1 !important;
+  transform:none !important;
+  animation:none !important;
+  pointer-events:none;
+}
+
+/* soft glass highlight */
+.menu-item::after{
+  content:"" !important;
+  position:absolute !important;
+  inset:2px 8px auto 8px !important;
+  height:42% !important;
+  border-radius:14px 14px 45% 45% !important;
+  background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,0)) !important;
+  transform:none !important;
+  animation:none !important;
+  opacity:.72 !important;
+  pointer-events:none;
+}
+
+.menu-text{
+  position:relative;
+  z-index:2;
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  font-size:16px !important;
+  line-height:1.08 !important;
+  font-weight:800 !important;
+  letter-spacing:0;
+  color:inherit;
+  text-shadow:0 1px 1px rgba(0,0,0,.8),0 0 7px rgba(183,236,244,.18);
+}
+
+/* Gold selected Home button exactly like the reference */
+.menu-item.active{
+  color:#e7bf72 !important;
+  border-color:rgba(223,183,105,.86) !important;
+  background:
+    linear-gradient(180deg,rgba(71,80,81,.84) 0%,rgba(44,55,58,.88) 48%,rgba(28,38,42,.97) 100%) !important;
+  box-shadow:
+    0 0 0 2px rgba(225,202,154,.36),
+    0 0 15px rgba(247,190,88,.58),
+    0 0 26px rgba(247,190,88,.22),
+    inset 0 2px 3px rgba(255,244,211,.30),
+    inset 0 -4px 8px rgba(0,0,0,.58),
+    inset 0 0 0 3px rgba(43,35,24,.54) !important;
+}
+
+.menu-item.active::before{
+  border-color:rgba(242,204,134,.46) !important;
+  background:linear-gradient(180deg,rgba(255,230,180,.07),rgba(0,0,0,.09)) !important;
+}
+
+.menu-item.active::after{
+  background:linear-gradient(180deg,rgba(255,232,185,.16),rgba(255,255,255,0)) !important;
+}
+
+.menu-item:active{transform:scale(.985);}
+
+@media(max-width:430px){
+  .menu-shell{padding:8px 7px 10px !important;}
+  .menu{gap:5px !important;}
+  .menu-item{height:62px !important;border-radius:16px !important;padding:4px 3px !important;}
+  .menu-item::before{inset:4px !important;border-radius:12px !important;}
+  .menu-text{font-size:11.2px !important;}
+}
+
+@media(max-width:360px){
+  .menu-shell{padding:7px 6px 9px !important;}
+  .menu{gap:4px !important;}
+  .menu-item{height:57px !important;border-radius:14px !important;padding:3px 2px !important;}
+  .menu-text{font-size:9.8px !important;}
+}
+</style>
+
+
+<style id="yellow-vibe-grade">
+/* ==========================================
+   GOLD / YELLOW VIBE — HEADER VISUALS ONLY
+   Layout and existing page functionality stay unchanged.
+   ========================================== */
+:root{
+  --bg:#080706;
+  --bg2:#171108;
+  --bg3:#2b1e0a;
+  --cyan:#ffd45a;
+  --violet:#d79b24;
+  --pink:#ffbd38;
+  --lime:#ffe883;
+  --white:#ffffff;
+}
+
+.site-header{
+  background:
+    linear-gradient(135deg,#080706 0%,#151007 44%,#2b1c08 100%) !important;
+  border-bottom-color:rgba(255,210,90,.20) !important;
+}
+.site-header::before{
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,205,72,.28),transparent 22%),
+    radial-gradient(circle at 82% 18%,rgba(222,157,38,.22),transparent 23%),
+    radial-gradient(circle at 52% -3%,rgba(255,232,131,.14),transparent 28%) !important;
+}
+.site-header::after{
+  background:
+    linear-gradient(rgba(255,224,136,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,224,136,.028) 1px,transparent 1px) !important;
+}
+
+.particle{
+  background:#ffd45a !important;
+  box-shadow:0 0 14px rgba(255,205,72,.72) !important;
+}
+.p2{
+  background:#e1a12b !important;
+  box-shadow:0 0 12px rgba(225,161,43,.68) !important;
+}
+.p3{
+  background:#ffe883 !important;
+  box-shadow:0 0 12px rgba(255,232,131,.56) !important;
+}
+.p4{background:#ffc83d !important;}
+.scan{
+  background:linear-gradient(90deg,transparent,rgba(255,221,125,.11),transparent) !important;
+}
+
+.brand-strip{
+  border-bottom-color:rgba(255,213,105,.16) !important;
+}
+.logo-shell::before,.logo-shell::after{
+  background:linear-gradient(90deg,transparent,rgba(255,207,77,.94)) !important;
+}
+.logo-image{
+  filter:drop-shadow(0 0 13px rgba(255,192,49,.25)) !important;
+}
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 10px rgba(255,192,49,.20))}
+  50%{transform:translateY(-2px) scale(1.015);filter:drop-shadow(0 0 20px rgba(255,205,72,.36))}
+}
+
+/* Search: icon only — absolutely no visible box/circle/background */
+.search-btn{
+  left:12px !important;
+  right:auto !important;
+  width:34px !important;
+  height:34px !important;
+  padding:0 !important;
+  margin:0 !important;
+  background:none !important;
+  background-color:transparent !important;
+  background-image:none !important;
+  border:0 !important;
+  outline:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  overflow:visible !important;
+  color:#ffd76a !important;
+}
+.search-btn::before,
+.search-btn::after{
+  content:none !important;
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+  border:0 !important;
+  background:none !important;
+  box-shadow:none !important;
+}
+.search-btn svg{
+  width:26px !important;
+  height:26px !important;
+  display:block !important;
+  fill:none !important;
+  stroke:#ffd76a !important;
+  stroke-width:2.05 !important;
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+  filter:drop-shadow(0 0 4px rgba(255,196,55,.32));
+}
+.search-btn:hover svg{
+  stroke:#ffe79b !important;
+  filter:drop-shadow(0 0 7px rgba(255,207,77,.52));
+}
+
+/* Keep all five menu items in one row, now with a unified gold grade */
+.menu{
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+}
+.menu-item{
+  color:#f3dfb0 !important;
+  border-color:rgba(232,182,72,.42) !important;
+  background:
+    linear-gradient(180deg,rgba(60,50,30,.91) 0%,rgba(39,33,22,.96) 53%,rgba(24,21,17,.99) 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,209,98,.12),
+    0 0 11px rgba(210,148,34,.16),
+    inset 0 2px 3px rgba(255,236,184,.10),
+    inset 0 -4px 8px rgba(0,0,0,.42) !important;
+}
+.menu-item::before{
+  border-color:rgba(255,213,113,.24) !important;
+  background:linear-gradient(180deg,rgba(255,223,142,.07),rgba(0,0,0,.10)) !important;
+}
+.menu-item::after{
+  background:linear-gradient(180deg,rgba(255,225,151,.10),rgba(255,255,255,0)) !important;
+}
+.menu-text{
+  text-shadow:0 1px 1px rgba(0,0,0,.88),0 0 7px rgba(255,197,60,.15) !important;
+}
+.menu-item.active{
+  color:#ffe5a0 !important;
+  border-color:rgba(255,205,91,.90) !important;
+  background:
+    linear-gradient(180deg,rgba(92,72,35,.94) 0%,rgba(57,46,27,.97) 49%,rgba(31,27,21,1) 100%) !important;
+  box-shadow:
+    0 0 0 2px rgba(255,225,151,.32),
+    0 0 16px rgba(255,190,52,.58),
+    0 0 29px rgba(255,190,52,.22),
+    inset 0 2px 3px rgba(255,245,211,.31),
+    inset 0 -4px 8px rgba(0,0,0,.56),
+    inset 0 0 0 3px rgba(64,43,13,.48) !important;
+}
+.menu-item.active::before{
+  border-color:rgba(255,224,149,.51) !important;
+  background:linear-gradient(180deg,rgba(255,234,182,.09),rgba(0,0,0,.08)) !important;
+}
+.menu-item.active::after{
+  background:linear-gradient(180deg,rgba(255,230,164,.18),rgba(255,255,255,0)) !important;
+}
+
+.news{
+  background:rgba(20,14,5,.76) !important;
+  border-top-color:rgba(255,211,101,.16) !important;
+}
+.news-label{
+  color:#2b1b04 !important;
+  background:linear-gradient(135deg,#ffd85e,#d79b24) !important;
+  text-shadow:0 1px rgba(255,255,255,.22);
+}
+.live-dot{
+  background:#fff0a4 !important;
+}
+.news-item{color:#f7e7bd !important;}
+.news-sep{
+  background:linear-gradient(135deg,#ffe47e,#c98b1e) !important;
+  box-shadow:0 0 10px rgba(255,196,55,.34) !important;
+}
+
+@media(max-width:430px){
+  .search-btn{left:9px !important;width:32px !important;height:32px !important;}
+  .search-btn svg{width:25px !important;height:25px !important;}
+}
+@media(max-width:360px){
+  .search-btn{left:7px !important;width:30px !important;height:30px !important;}
+  .search-btn svg{width:23px !important;height:23px !important;}
+}
+</style>
+
 <style>/* ==========================================
    🚀 HIDDEN ELEMENTS
    ========================================== */
@@ -284,6 +597,47 @@ html, body, #__next, [data-scroll-locked] {
 div[role="dialog"] ~ div[aria-hidden="true"][style*="position: fixed"] {
     display: none !important;
     pointer-events: none !important;
+}</style><style>/* ==========================================
+   🚀 HIDDEN ELEMENTS (Original Rules)
+   ========================================== */
+[data-testid="accounts-profile-button"],
+[data-testid="conversation-options-button"],
+[aria-description="Share sheet"],
+#modal-account-payment,
+#modal-conversation-history-rate-limit,
+a[href="/library"],
+a[href="/Invite team members"],
+a[href="/apps"],
+a[href="/logout"],
+a[href="/admin"],
+a[href="/deep-research"] {
+  display: none !important;
+}
+
+#notice_share {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* ==========================================
+   🚀 COMBINED SCROLL UNLOCK (Wheel & Touch Fix)
+   ========================================== */
+html, body, #__next, [data-scroll-locked] {
+    overflow: visible !important;
+    overflow-y: auto !important;
+    pointer-events: auto !important;
+    padding-right: 0 !important; 
+}
+
+.flex-1.overflow-hidden, 
+.react-scroll-to-bottom--css {
+    overflow-y: auto !important;
+    pointer-events: auto !important;
+}
+
+div[role="dialog"] ~ div[aria-hidden="true"][style*="position: fixed"] {
+    display: none !important;
+    pointer-events: none !important;
 }</style></head>
 
 <body>
@@ -307,9 +661,9 @@ div[role="dialog"] ~ div[aria-hidden="true"][style*="position: fixed"] {
     </div>
 
     <a href="#" class="search-btn" aria-label="Search">
-      <svg viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="7"></circle>
-        <path d="M20 20L16.65 16.65"></path>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.5" cy="10.5" r="6.75"></circle>
+        <path d="M15.6 15.6L21 21"></path>
       </svg>
     </a>
   </section>
@@ -723,5 +1077,163 @@ document.body.addEventListener("click", function (event) {
 
   observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class', 'data-scroll-locked', 'aria-hidden'] });
   cleanDOM();
-})();</script></body>
+})();</script><script>(function () {
+  "use strict";
+
+  // Share link redirector
+  document.body.addEventListener("click", function (event) {
+    const link = event.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    if (!href) return;
+
+    const regex = /^\/c\/([^\/]+)\/share\/([^\/]+)$/;
+    const match = href.match(regex);
+
+    if (match) {
+      const isButton = event.target.closest("button");
+      if (isButton) return;
+
+      event.preventDefault();
+      const chatId = match[1];
+      const shareId = match[2];
+      window.location.href = `/share/${shareId}?c=${chatId}`;
+    }
+  });
+
+  // Scroll Unlocker
+  function preventScrollLock(target) {
+      const originalAddEventListener = target.addEventListener;
+      target.addEventListener = function(type, listener, options) {
+          if (type === 'wheel' || type === 'touchmove') return; 
+          return originalAddEventListener.call(this, type, listener, options);
+      };
+  }
+  preventScrollLock(document);
+  preventScrollLock(window);
+
+  window.addEventListener("hashchange", function (event) {
+      if (window.location.hash === "#settings" || window.location.hash === "#pricing") {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        history.replaceState(null, null, " ");
+      }
+    }, true
+  );
+
+  const filterRules = [
+    { type: "selectorOnly", selector: '[data-testid="accounts-profile-button"]' },
+    { type: "selectorOnly", selector: '[data-testid="conversation-options-button"]' },
+    { type: "selectorOnly", selector: "#modal-account-payment" },
+    { type: "selectorOnly", selector: ".data-prompt-textarea-header aside" },
+    { type: "selectorOnly", selector: 'a[href="/library"]' },
+    { type: "selectorOnly", selector: 'a[href="/admin"]' },
+    { type: "selectorOnly", selector: 'a[href="/apps"]' },
+    { type: "selectorOnly", selector: 'a[href="/c/mustbe_hidden_pin"]' },
+    { type: "selectorOnly", selector: 'a[href="/deep-research"]' },
+    { type: "textOnly", text: "Report conversation" },
+    { type: "textOnly", text: "This is a copy of a shared ChatGPT conversation" },
+    { type: "textOnly", text: "Messages beyond this point are only visible to you" },
+    { type: "textOnly", text: "Archive" },
+    { type: "textOnly", text: "Start a group chat" },
+    { type: "xpath", query: "//button[contains(., 'Invite team members')]" }
+  ];
+
+  function cleanDOM() {
+    document.body.removeAttribute('data-scroll-locked');
+    document.documentElement.removeAttribute('data-scroll-locked');
+    
+    const nextRoot = document.getElementById('__next');
+    if (nextRoot) {
+        nextRoot.removeAttribute('aria-hidden');
+    }
+
+    document.head.querySelectorAll('style[data-radix-scroll-prevent-default]').forEach(el => {
+        el.remove();
+    });
+
+    document.querySelectorAll('div[aria-hidden="true"][style*="position: fixed"]').forEach(el => {
+        if (el.style.backgroundColor || el.style.backdropFilter || el.style.opacity) {
+            el.remove();
+        }
+    });
+
+    document.querySelectorAll('[aria-description="Share sheet"]').forEach((el) => {
+        if (el.parentElement) {
+          el.parentElement.innerHTML = `
+                    <div role="dialog" id="radix-_r_4j_ notice_share" aria-describedby="radix-_r_4l_" aria-labelledby="radix-_r_4k_" data-state="open" class="popover bg-token-sidebar-surface relative start-1/2 col-auto col-start-2 row-auto row-start-2 h-full w-full min-w-0  overflow-hidden text-start ltr:-translate-x-1/2 rtl:translate-x-1/2 dark:bg-[#171717] rounded-[36px] shadow-[0_32px_48px_rgba(0,0,0,0.175),_0_0_1px_rgba(0,0,0,0.2)] dark:shadow-[0_32px_48px_rgba(0,0,0,0.175),_0_0_1px_rgba(255,255,255,0.4)] flex flex-col focus:outline-hidden max-w-[640px]" tabindex="-1" style="pointer-events: auto;"><img src="https://placehold.co/600x400" alt="Notice"></div>
+                `;
+        }
+    });
+
+    document.querySelectorAll('[href="/cdn/assets/sprites-core-9c5054d5.svg#f7f872"]').forEach((el) => {
+        if (el.parentElement) el.parentElement.parentElement.parentElement.remove();
+    });
+
+    document.querySelectorAll('[href="/cdn/assets/sprites-core-9c5054d5.svg#61ee0c"]').forEach((el) => {
+        if (el.parentElement) el.parentElement.parentElement.parentElement.parentElement.remove();
+    });
+      
+    document.querySelectorAll('[href="/cdn/assets/sprites-core-9c5054d5.svg#427dd9"]').forEach((el) => {
+        if (el.parentElement) el.parentElement.parentElement.remove();
+    });
+
+    const dynamicModal = document.querySelector('#settings, #pricing, [id*="pricing"], [class*="modal-pricing"], [id*="settings"], [class*="modal-settings"]');
+    if (dynamicModal) {
+      dynamicModal.remove();
+    }
+
+    filterRules.forEach((rule) => {
+      if (rule.type === "selectorOnly") {
+        const elements = document.querySelectorAll(rule.selector);
+        elements.forEach((element) => { if(element) element.style.setProperty('display', 'none', 'important'); });
+      } else if (rule.type === "textOnly") {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        let textNode;
+        const nodesToHide = [];
+        while ((textNode = walker.nextNode())) {
+          if (textNode.nodeValue.trim() === rule.text) {
+            const parent = textNode.parentElement;
+            if (parent && parent.children.length === 0) nodesToHide.push(parent);
+          }
+        }
+        nodesToHide.forEach((node) => { if(node) node.style.setProperty('display', 'none', 'important'); });
+      } else if (rule.type === "xpath") {
+        const snapshot = document.evaluate(rule.query, document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+        for (let i = 0; i < snapshot.snapshotLength; i++) {
+          const node = snapshot.snapshotItem(i);
+          if (node) node.style.setProperty('display', 'none', 'important');
+        }
+      }
+    });
+  }
+
+  let isCleaning = false;
+  const observer = new MutationObserver((mutationsList) => {
+    if (isCleaning) return;
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'attributes') {
+          if (mutation.attributeName === 'data-scroll-locked' && mutation.target === document.body) document.body.removeAttribute('data-scroll-locked');
+          if (mutation.attributeName === 'aria-hidden' && mutation.target.id === '__next') mutation.target.removeAttribute('aria-hidden');
+      }
+      if (mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach(node => {
+            if (node.tagName === 'STYLE' && node.hasAttribute('data-radix-scroll-prevent-default')) {
+                node.remove();
+            }
+        });
+
+        isCleaning = true;
+        cleanDOM();
+        isCleaning = false;
+        break;
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class', 'data-scroll-locked', 'aria-hidden'] });
+  cleanDOM();
+})();
+</script></body>
 </html>
