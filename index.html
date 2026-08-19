@@ -203,11 +203,11 @@ body.nav-overlay-open{overflow:hidden!important}
   background:linear-gradient(90deg,transparent,#f3d48f 18%,#fff0bf 50%,#f3d48f 82%,transparent);
   opacity:0;transition:.2s ease
 }
-.overlay-menu-item:hover,.overlay-menu-item:focus-visible{
+.overlay-menu-item:hover,.overlay-menu-item:focus-visible,.overlay-menu-item.active{
   color:#fff0bf;border-color:#a99873;transform:translateY(-2px);
   background:linear-gradient(165deg,rgba(255,255,255,.16),transparent 30%),linear-gradient(180deg,#494640,#201e1a)
 }
-.overlay-menu-item:hover::after,.overlay-menu-item:focus-visible::after{opacity:1}
+.overlay-menu-item:hover::after,.overlay-menu-item:focus-visible::after,.overlay-menu-item.active::after{opacity:1}
 .overlay-menu-item:focus-visible{outline:2px solid #f3d48f;outline-offset:3px}
 
 /* 2A. FACEBOOK GROUP & PROXY LINK */
@@ -263,6 +263,63 @@ body.nav-overlay-open{overflow:hidden!important}
 }
 .visit-site-btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 .visit-site-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* ADMIN, SUPER AGENT & MASTER AGENT TABLES */
+.resource-links.is-hidden{display:none}
+.agent-directory{
+  display:none;width:100%;padding:24px 18px 40px;background:#0d0f12;
+  border-top:1px solid rgba(255,255,255,.06)
+}
+.agent-directory.is-active{display:block}
+.agent-panel{display:none;width:min(100%,1180px);margin:0 auto}
+.agent-panel.is-active{display:block}
+.agent-panel-title{
+  margin-bottom:16px;color:#f4c43f;font-size:26px;line-height:1.2;font-weight:850;text-align:center
+}
+.agent-table-wrap{
+  width:100%;overflow-x:hidden;border:1px solid #303845;border-radius:13px;
+  background:#111316;box-shadow:0 12px 28px rgba(0,0,0,.32)
+}
+.agent-table{width:100%;min-width:0;border-collapse:collapse;table-layout:fixed}
+.agent-table col.id-col{width:10%}
+.agent-table col.name-col{width:24%}
+.agent-table col.number-col{width:25%}
+.agent-table col.apps-col{width:19%}
+.agent-table col.complain-col{width:22%}
+.agent-table thead{background:linear-gradient(180deg,#1635e8,#08199b)}
+.agent-table th{
+  padding:14px 10px;color:#fff;font-size:17px;line-height:1.1;font-weight:900;text-align:center;
+  text-transform:uppercase;border-right:1px solid rgba(255,255,255,.12)
+}
+.agent-table th:last-child{border-right:0}
+.agent-data-row{background:#111316}
+.agent-data-row:nth-of-type(4n+3){background:#171a1e}
+.agent-data-row td{
+  padding:14px 10px;color:#f5f7fa;font-size:16px;font-weight:750;text-align:center;
+  vertical-align:middle;border-right:1px solid #2f3540;overflow-wrap:anywhere
+}
+.agent-data-row td:last-child{border-right:0}
+.agent-id{color:#f4c43f!important;font-weight:900!important}
+.agent-name{text-align:left!important}
+.agent-number{font-family:Arial,sans-serif;font-size:18px!important;letter-spacing:.3px}
+.whatsapp-link{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:8px 12px;
+  color:#fff;background:#1fae55;border:1px solid #35d476;border-radius:999px;
+  font-size:13px;font-weight:800;text-decoration:none
+}
+.whatsapp-link svg{width:20px;height:20px;fill:currentColor}
+.report-link{
+  display:inline-flex;align-items:center;justify-content:center;min-width:100px;padding:9px 13px;
+  color:#ff7373;background:rgba(179,44,44,.14);border:1px solid rgba(255,91,91,.42);
+  border-radius:8px;font-size:14px;font-weight:850;text-decoration:none
+}
+.whatsapp-link:hover,.report-link:hover{filter:brightness(1.12)}
+.whatsapp-link:focus-visible,.report-link:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.agent-warning-row td{
+  padding:9px 14px;background:linear-gradient(180deg,#444950,#30343a);color:#fff;
+  font-size:12px;line-height:1.5;font-weight:650;text-align:center;
+  border-top:1px solid #60656c;border-bottom:1px solid #17191c
+}
 
 /* 3. NEWS */
 .news{
@@ -332,6 +389,17 @@ body.nav-overlay-open{overflow:hidden!important}
   .proxy-table td{padding:10px 9px}
   .proxy-url{font-size:12px}
   .visit-site-btn{min-height:38px;padding:8px 6px;font-size:11px;border-radius:7px}
+  .agent-directory{padding:18px 10px 30px}
+  .agent-panel-title{margin-bottom:12px;font-size:21px}
+  .agent-table{min-width:0}
+  .agent-table th{padding:9px 3px;font-size:10px;line-height:1.15;overflow-wrap:anywhere}
+  .agent-data-row td{padding:9px 3px;font-size:10px;line-height:1.25}
+  .agent-name{text-align:center!important}
+  .agent-number{font-size:10px!important;letter-spacing:0}
+  .whatsapp-link{width:34px;height:34px;padding:0;gap:0;font-size:0}
+  .whatsapp-link svg{width:18px;height:18px}
+  .report-link{width:100%;min-width:0;padding:8px 2px;font-size:9.5px}
+  .agent-warning-row td{padding:7px 5px;font-size:9px;line-height:1.45}
   .nav-overlay-panel{padding:78px 16px 32px}
   .nav-overlay-close{top:16px;right:16px;width:46px;height:46px}
   .nav-overlay-close svg{width:22px;height:22px}
@@ -525,11 +593,11 @@ div[role="dialog"] ~ div[aria-hidden="true"][style*="position: fixed"] {
   <!-- 2. MENU -->
   <div class="menu-shell" id="main-menu">
     <nav class="menu">
-      <a href="#" class="menu-item active"><span class="menu-text">হোম</span></a>
-      <a href="#" class="menu-item"><span class="menu-text">কাস্টমার<br>সার্ভিস</span></a>
-      <a href="#" class="menu-item"><span class="menu-text">এডমিন</span></a>
-      <a href="#" class="menu-item"><span class="menu-text">সুপার<br>এজেন্ট</span></a>
-      <a href="#" class="menu-item"><span class="menu-text">মাস্টার<br>এজেন্ট</span></a>
+      <a href="#" class="menu-item active" data-tab="home"><span class="menu-text">হোম</span></a>
+      <a href="#" class="menu-item" data-tab="customer-service"><span class="menu-text">কাস্টমার<br>সার্ভিস</span></a>
+      <a href="#" class="menu-item" data-tab="admin"><span class="menu-text">এডমিন</span></a>
+      <a href="#" class="menu-item" data-tab="super-agent"><span class="menu-text">সুপার<br>এজেন্ট</span></a>
+      <a href="#" class="menu-item" data-tab="master-agent"><span class="menu-text">মাস্টার<br>এজেন্ট</span></a>
     </nav>
   </div>
 
@@ -572,17 +640,17 @@ div[role="dialog"] ~ div[aria-hidden="true"][style*="position: fixed"] {
 
   <div class="nav-overlay-panel">
     <nav class="overlay-menu" aria-label="Expanded navigation">
-      <a href="#" class="overlay-menu-item">হোম</a>
-      <a href="#" class="overlay-menu-item">কাস্টমার সার্ভিস</a>
-      <a href="#" class="overlay-menu-item">এডমিন</a>
-      <a href="#" class="overlay-menu-item">সুপার এজেন্ট</a>
-      <a href="#" class="overlay-menu-item">মাস্টার এজেন্ট</a>
+      <a href="#" class="overlay-menu-item active" data-tab="home">হোম</a>
+      <a href="#" class="overlay-menu-item" data-tab="customer-service">কাস্টমার সার্ভিস</a>
+      <a href="#" class="overlay-menu-item" data-tab="admin">এডমিন</a>
+      <a href="#" class="overlay-menu-item" data-tab="super-agent">সুপার এজেন্ট</a>
+      <a href="#" class="overlay-menu-item" data-tab="master-agent">মাস্টার এজেন্ট</a>
     </nav>
   </div>
 </aside>
 
 <!-- FACEBOOK GROUP & PROXY LINK -->
-<main class="resource-links">
+<main class="resource-links" id="home-content">
   <section class="resource-card" aria-labelledby="facebook-group-title">
     <div class="resource-copy">
       <h2 class="resource-title" id="facebook-group-title">আমাদের অফিসিয়াল ফেসবুক গ্রুপ</h2>
@@ -636,20 +704,113 @@ div[role="dialog"] ~ div[aria-hidden="true"][style*="position: fixed"] {
   </section>
 </main>
 
+<!-- ADMIN, SUPER AGENT & MASTER AGENT TABLES -->
+<main class="agent-directory" id="agent-directory">
+  <section class="agent-panel" data-panel="admin" aria-labelledby="admin-table-title">
+    <h2 class="agent-panel-title" id="admin-table-title">এডমিন লিস্ট</h2>
+    <div class="agent-table-wrap">
+      <table class="agent-table">
+        <colgroup><col class="id-col"><col class="name-col"><col class="number-col"><col class="apps-col"><col class="complain-col"></colgroup>
+        <thead><tr><th>ID</th><th>Name</th><th>Number</th><th>Apps</th><th>Complain</th></tr></thead>
+        <tbody>
+          <!-- নতুন agent যোগ করতে agent row ও তার পরের warning row একসাথে কপি করুন -->
+          <tr class="agent-data-row">
+            <td class="agent-id">A-001</td><td class="agent-name">ADMIN AGENT 01</td><td class="agent-number">+8801XXXXXXXXX</td>
+            <td><a class="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.3 22l5.4-1.4A9.8 9.8 0 0 0 19.1 4.9zm-7 14.9a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3a8 8 0 1 1 6.9 3.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.7 1.1 2.9c.2.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.2-.2-.5-.3z"></path></svg>WhatsApp</a></td>
+            <td><a class="report-link" href="#">REPORT</a></td>
+          </tr>
+          <tr class="agent-warning-row"><td colspan="5">ভুয়া এজেন্ট ও ভুয়া এজেন্ট-লিস্ট থেকে বিরত থাকুন। কোনো এজেন্ট নিজে যদি ভিন্ন বা ভুয়া কোনো লিস্ট দিয়ে কিংবা নির্দিষ্ট হোয়াটসঅ্যাপ নম্বরের বাইরে অন্য কোনো নম্বর থেকে মেসেজ পাঠিয়ে আইডি খুলে দেওয়া বা লেনদেন করার কথা বলে, তবে তা বিশ্বাস করা থেকে বিরত থাকুন। সন্দেহজনক পরিস্থিতিতে লেনদেন করার পূর্বে কাস্টমার কেয়ারে যোগাযোগ করে নিশ্চিত হয়ে নিন।</td></tr>
+          <tr class="agent-data-row">
+            <td class="agent-id">A-002</td><td class="agent-name">ADMIN AGENT 02</td><td class="agent-number">+8801XXXXXXXXX</td>
+            <td><a class="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.3 22l5.4-1.4A9.8 9.8 0 0 0 19.1 4.9zm-7 14.9a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3a8 8 0 1 1 6.9 3.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.7 1.1 2.9c.2.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.2-.2-.5-.3z"></path></svg>WhatsApp</a></td>
+            <td><a class="report-link" href="#">REPORT</a></td>
+          </tr>
+          <tr class="agent-warning-row"><td colspan="5">ভুয়া এজেন্ট ও ভুয়া এজেন্ট-লিস্ট থেকে বিরত থাকুন। কোনো এজেন্ট নিজে যদি ভিন্ন বা ভুয়া কোনো লিস্ট দিয়ে কিংবা নির্দিষ্ট হোয়াটসঅ্যাপ নম্বরের বাইরে অন্য কোনো নম্বর থেকে মেসেজ পাঠিয়ে আইডি খুলে দেওয়া বা লেনদেন করার কথা বলে, তবে তা বিশ্বাস করা থেকে বিরত থাকুন। সন্দেহজনক পরিস্থিতিতে লেনদেন করার পূর্বে কাস্টমার কেয়ারে যোগাযোগ করে নিশ্চিত হয়ে নিন।</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="agent-panel" data-panel="super-agent" aria-labelledby="super-table-title">
+    <h2 class="agent-panel-title" id="super-table-title">সুপার এজেন্ট লিস্ট</h2>
+    <div class="agent-table-wrap">
+      <table class="agent-table">
+        <colgroup><col class="id-col"><col class="name-col"><col class="number-col"><col class="apps-col"><col class="complain-col"></colgroup>
+        <thead><tr><th>ID</th><th>Name</th><th>Number</th><th>Apps</th><th>Complain</th></tr></thead>
+        <tbody>
+          <tr class="agent-data-row">
+            <td class="agent-id">S-001</td><td class="agent-name">SUPER AGENT 01</td><td class="agent-number">+8801XXXXXXXXX</td>
+            <td><a class="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.3 22l5.4-1.4A9.8 9.8 0 0 0 19.1 4.9zm-7 14.9a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3a8 8 0 1 1 6.9 3.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.7 1.1 2.9c.2.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.2-.2-.5-.3z"></path></svg>WhatsApp</a></td>
+            <td><a class="report-link" href="#">REPORT</a></td>
+          </tr>
+          <tr class="agent-warning-row"><td colspan="5">ভুয়া এজেন্ট ও ভুয়া এজেন্ট-লিস্ট থেকে বিরত থাকুন। কোনো এজেন্ট নিজে যদি ভিন্ন বা ভুয়া কোনো লিস্ট দিয়ে কিংবা নির্দিষ্ট হোয়াটসঅ্যাপ নম্বরের বাইরে অন্য কোনো নম্বর থেকে মেসেজ পাঠিয়ে আইডি খুলে দেওয়া বা লেনদেন করার কথা বলে, তবে তা বিশ্বাস করা থেকে বিরত থাকুন। সন্দেহজনক পরিস্থিতিতে লেনদেন করার পূর্বে কাস্টমার কেয়ারে যোগাযোগ করে নিশ্চিত হয়ে নিন।</td></tr>
+          <tr class="agent-data-row">
+            <td class="agent-id">S-002</td><td class="agent-name">SUPER AGENT 02</td><td class="agent-number">+8801XXXXXXXXX</td>
+            <td><a class="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.3 22l5.4-1.4A9.8 9.8 0 0 0 19.1 4.9zm-7 14.9a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3a8 8 0 1 1 6.9 3.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.7 1.1 2.9c.2.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.2-.2-.5-.3z"></path></svg>WhatsApp</a></td>
+            <td><a class="report-link" href="#">REPORT</a></td>
+          </tr>
+          <tr class="agent-warning-row"><td colspan="5">ভুয়া এজেন্ট ও ভুয়া এজেন্ট-লিস্ট থেকে বিরত থাকুন। কোনো এজেন্ট নিজে যদি ভিন্ন বা ভুয়া কোনো লিস্ট দিয়ে কিংবা নির্দিষ্ট হোয়াটসঅ্যাপ নম্বরের বাইরে অন্য কোনো নম্বর থেকে মেসেজ পাঠিয়ে আইডি খুলে দেওয়া বা লেনদেন করার কথা বলে, তবে তা বিশ্বাস করা থেকে বিরত থাকুন। সন্দেহজনক পরিস্থিতিতে লেনদেন করার পূর্বে কাস্টমার কেয়ারে যোগাযোগ করে নিশ্চিত হয়ে নিন।</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="agent-panel" data-panel="master-agent" aria-labelledby="master-table-title">
+    <h2 class="agent-panel-title" id="master-table-title">মাস্টার এজেন্ট লিস্ট</h2>
+    <div class="agent-table-wrap">
+      <table class="agent-table">
+        <colgroup><col class="id-col"><col class="name-col"><col class="number-col"><col class="apps-col"><col class="complain-col"></colgroup>
+        <thead><tr><th>ID</th><th>Name</th><th>Number</th><th>Apps</th><th>Complain</th></tr></thead>
+        <tbody>
+          <tr class="agent-data-row">
+            <td class="agent-id">M-001</td><td class="agent-name">MASTER AGENT 01</td><td class="agent-number">+8801XXXXXXXXX</td>
+            <td><a class="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.3 22l5.4-1.4A9.8 9.8 0 0 0 19.1 4.9zm-7 14.9a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3a8 8 0 1 1 6.9 3.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.7 1.1 2.9c.2.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.2-.2-.5-.3z"></path></svg>WhatsApp</a></td>
+            <td><a class="report-link" href="#">REPORT</a></td>
+          </tr>
+          <tr class="agent-warning-row"><td colspan="5">ভুয়া এজেন্ট ও ভুয়া এজেন্ট-লিস্ট থেকে বিরত থাকুন। কোনো এজেন্ট নিজে যদি ভিন্ন বা ভুয়া কোনো লিস্ট দিয়ে কিংবা নির্দিষ্ট হোয়াটসঅ্যাপ নম্বরের বাইরে অন্য কোনো নম্বর থেকে মেসেজ পাঠিয়ে আইডি খুলে দেওয়া বা লেনদেন করার কথা বলে, তবে তা বিশ্বাস করা থেকে বিরত থাকুন। সন্দেহজনক পরিস্থিতিতে লেনদেন করার পূর্বে কাস্টমার কেয়ারে যোগাযোগ করে নিশ্চিত হয়ে নিন।</td></tr>
+          <tr class="agent-data-row">
+            <td class="agent-id">M-002</td><td class="agent-name">MASTER AGENT 02</td><td class="agent-number">+8801XXXXXXXXX</td>
+            <td><a class="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.1 4.9A9.8 9.8 0 0 0 3.7 16.7L2.3 22l5.4-1.4A9.8 9.8 0 0 0 19.1 4.9zm-7 14.9a8 8 0 0 1-4.1-1.1l-.3-.2-3.2.8.9-3.1-.2-.3a8 8 0 1 1 6.9 3.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.7-2.4-1.3-3.3-2.9-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5l-.8-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.4s1 2.7 1.1 2.9c.2.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.1-.2-.2-.5-.3z"></path></svg>WhatsApp</a></td>
+            <td><a class="report-link" href="#">REPORT</a></td>
+          </tr>
+          <tr class="agent-warning-row"><td colspan="5">ভুয়া এজেন্ট ও ভুয়া এজেন্ট-লিস্ট থেকে বিরত থাকুন। কোনো এজেন্ট নিজে যদি ভিন্ন বা ভুয়া কোনো লিস্ট দিয়ে কিংবা নির্দিষ্ট হোয়াটসঅ্যাপ নম্বরের বাইরে অন্য কোনো নম্বর থেকে মেসেজ পাঠিয়ে আইডি খুলে দেওয়া বা লেনদেন করার কথা বলে, তবে তা বিশ্বাস করা থেকে বিরত থাকুন। সন্দেহজনক পরিস্থিতিতে লেনদেন করার পূর্বে কাস্টমার কেয়ারে যোগাযোগ করে নিশ্চিত হয়ে নিন।</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
 <script>
 const items=document.querySelectorAll(".menu-item");
-items.forEach(item=>{
-  item.addEventListener("click",function(e){
-    e.preventDefault();
-    items.forEach(x=>x.classList.remove("active"));
-    this.classList.add("active");
-  });
-});
-
 const menuOpenButton=document.querySelector(".menu-open-btn");
 const menuOverlay=document.querySelector(".nav-overlay");
 const menuCloseButton=document.querySelector(".nav-overlay-close");
 const overlayMenuItems=document.querySelectorAll(".overlay-menu-item");
+const homeContent=document.querySelector(".resource-links");
+const agentDirectory=document.querySelector(".agent-directory");
+const agentPanels=document.querySelectorAll(".agent-panel");
+
+function activatePageTab(tabName){
+  const isAgentTab=["admin","super-agent","master-agent"].includes(tabName);
+
+  homeContent.classList.toggle("is-hidden",isAgentTab);
+  agentDirectory.classList.toggle("is-active",isAgentTab);
+  agentPanels.forEach(panel=>panel.classList.toggle("is-active",panel.dataset.panel===tabName));
+
+  [...items,...overlayMenuItems].forEach(item=>{
+    item.classList.toggle("active",item.dataset.tab===tabName);
+  });
+
+  const target=isAgentTab?agentDirectory:homeContent;
+  setTimeout(()=>target.scrollIntoView({behavior:"smooth",block:"start"}),30);
+}
+
+items.forEach(item=>{
+  item.addEventListener("click",event=>{
+    event.preventDefault();
+    activatePageTab(item.dataset.tab);
+  });
+});
 
 function openMenuOverlay(){
   menuOverlay.classList.add("is-open");
@@ -659,12 +820,12 @@ function openMenuOverlay(){
   setTimeout(()=>menuCloseButton.focus(),50);
 }
 
-function closeMenuOverlay(){
+function closeMenuOverlay(restoreFocus=true){
   menuOverlay.classList.remove("is-open");
   menuOverlay.setAttribute("aria-hidden","true");
   menuOpenButton.setAttribute("aria-expanded","false");
   document.body.classList.remove("nav-overlay-open");
-  menuOpenButton.focus();
+  if(restoreFocus) menuOpenButton.focus();
 }
 
 menuOpenButton.addEventListener("click",openMenuOverlay);
@@ -672,7 +833,11 @@ menuCloseButton.addEventListener("click",closeMenuOverlay);
 menuOverlay.addEventListener("click",event=>{
   if(event.target===menuOverlay||event.target.classList.contains("nav-overlay-panel")) closeMenuOverlay();
 });
-overlayMenuItems.forEach(item=>item.addEventListener("click",closeMenuOverlay));
+overlayMenuItems.forEach(item=>item.addEventListener("click",event=>{
+  event.preventDefault();
+  closeMenuOverlay(false);
+  activatePageTab(item.dataset.tab);
+}));
 document.addEventListener("keydown",event=>{
   if(event.key==="Escape"&&menuOverlay.classList.contains("is-open")) closeMenuOverlay();
 });
